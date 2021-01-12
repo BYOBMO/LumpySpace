@@ -99,7 +99,7 @@ bool init()
 			}
 		}
 
-		gFont = TTF_OpenFont("fonts/eight.ttf", 28);
+		gFont = TTF_OpenFont("fonts/8bitoperator/8bitoperator.ttf", 32);
 		if (gFont == NULL)
 		{
 			printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
@@ -139,6 +139,21 @@ int main()
 
 		while (!quit)
 		{
+			Uint8 jSelect, jStart;
+
+			if (gGameController != NULL)
+			{
+				jSelect = SDL_JoystickGetButton(gGameController, 6);
+				jStart = SDL_JoystickGetButton(gGameController, 7);
+
+				//printf("%d %d\n", jStart, jSelect);
+				if (jSelect == 1 && jStart == 1)
+				{
+					quit = true;
+					break;
+				}
+			}
+
 			// Check for special keys like shift and control.
 			const Uint8 *keys = SDL_GetKeyboardState(NULL);
 

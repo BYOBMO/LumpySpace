@@ -56,6 +56,9 @@ private:
 	CText *mShipsText;
 	CText *mShipsTextValue;
 	CText *mLevelHeader;			// Displayed when a new level starts/
+	CText* mStartText;
+	CText* mControlsText;
+	CText* mControls2Text;
 
 	SDL_Color textBlack = { 0, 0, 0 };
 	SDL_Color textYellow = { 255, 255, 0 };

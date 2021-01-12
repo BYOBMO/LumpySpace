@@ -63,6 +63,9 @@ void CUfoAttack::GameOver()
 	mPlayer->Reset();
 	WeaponsHold();
 	mTitle->mView = true;
+	mStartText->mView = true;
+	mControlsText->mView = true;
+	mControls2Text->mView = true;
 	mJakeBug->mView = true;
 	mReloadCounter = -1;
 	mActiveUfos = 0;
@@ -158,6 +161,10 @@ void CUfoAttack::StartGame()
 	mPlayersLeft = 4;
 	LevelUp();
 	mTitle->mView = false; // Turn off game over graphics.
+	mStartText->mView = false;
+	mControlsText->mView = false;
+	mControls2Text->mView = false;
+
 	mJakeBug->mView = false;
 	
 	mReloadCounter = 300;
@@ -824,7 +831,7 @@ bool CUfoAttack::InitGame(CEngine *engine, SDL_Renderer *renderer, TTF_Font *fon
 	mTitle = new CAnimate();
 	mTitle->SetTexture(&title, 1, 1);
 	mTitle->Start(0, true);
-	mTitle->SetPos(bg.GetWidth() / 2 - mTitle->GetWidth() / 2, 75);
+	mTitle->SetPos(bg.GetWidth() / 2 - mTitle->GetWidth() / 2, 40);
 	mEngine->AddSprite(mTitle);
 
 	mScoreText = new CText();
@@ -836,13 +843,31 @@ bool CUfoAttack::InitGame(CEngine *engine, SDL_Renderer *renderer, TTF_Font *fon
 	mScoreTextValue = new CText();
 	mScoreTextValue->mView = true;
 	mScoreTextValue->SetText(mRenderer, mFont, "0", textYellow);
-	mScoreTextValue->SetPos(90, 550);
+	mScoreTextValue->SetPos(110, 550);
 	mEngine->AddSprite(mScoreTextValue);
+
+	mStartText = new CText();
+	mStartText->mView = true;
+	mStartText->SetText(mRenderer, mFont, "Press Start", textYellow);
+	mStartText->SetPos(350, 300);
+	mEngine->AddSprite(mStartText);
+
+	mControlsText = new CText();
+	mControlsText->mView = true;
+	mControlsText->SetText(mRenderer, mFont, "DPad: Move Left/Right", textYellow);
+	mControlsText->SetPos(275, 340);
+	mEngine->AddSprite(mControlsText);
+
+	mControls2Text = new CText();
+	mControls2Text->mView = true;
+	mControls2Text->SetText(mRenderer, mFont, "X: Shoot Up   Y: Shoot Left   A: Shoot Right", textYellow);
+	mControls2Text->SetPos(100, 370);
+	mEngine->AddSprite(mControls2Text);
 
 	mLevelText = new CText();
 	mLevelText->mView = true;
 	mLevelText->SetText(mRenderer, mFont, "Level:", textWhite);
-	mLevelText->SetPos(700, 550);
+	mLevelText->SetPos(675, 550);
 	mEngine->AddSprite(mLevelText);
 
 	mLevelTextValue = new CText();
@@ -854,13 +879,13 @@ bool CUfoAttack::InitGame(CEngine *engine, SDL_Renderer *renderer, TTF_Font *fon
 	mShipsText = new CText();
 	mShipsText->mView = true;
 	mShipsText->SetText(mRenderer, mFont, "Jakes:", textWhite);
-	mShipsText->SetPos(350, 550);
+	mShipsText->SetPos(320, 550);
 	mEngine->AddSprite(mShipsText);
 
 	mShipsTextValue = new CText();
 	mShipsTextValue->mView = true;
 	mShipsTextValue->SetText(mRenderer, mFont, "0", textYellow);
-	mShipsTextValue->SetPos(425, 550);
+	mShipsTextValue->SetPos(440, 550);
 	mEngine->AddSprite(mShipsTextValue);
 
 
