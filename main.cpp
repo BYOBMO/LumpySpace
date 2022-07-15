@@ -18,6 +18,8 @@ SDL_Joystick* gGameController = NULL;
 //The window renderer
 SDL_Renderer* gRenderer = NULL;
 TTF_Font *gFont = NULL;
+bool gSelect = false;
+bool gStart = false;
 
 bool init()
 {
@@ -187,6 +189,22 @@ int main()
 						}
 						break;
 
+					case SDLK_1:
+						gSelect = true;
+						if (gStart == true)
+						{
+							quit = true;
+						}
+						break;
+
+					case SDLK_5:
+						gStart = true;
+						if (gSelect == true)
+						{
+							quit = true;
+						}
+						break;
+
 					case SDLK_ESCAPE:
 						quit = true;
 						break;
@@ -205,6 +223,16 @@ int main()
 					{
 					case SDLK_SPACE:
 						level->StartGame();
+						
+						break;
+
+					case SDLK_1:
+						gSelect = false;
+						level->StartGame();
+						break;
+
+					case SDLK_5:
+						gStart = false;
 						
 						break;
 
